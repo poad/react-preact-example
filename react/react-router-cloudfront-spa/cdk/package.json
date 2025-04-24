@@ -1,0 +1,38 @@
+{
+  "name": "@react-router-cloudfront-spa-example/cdk",
+  "version": "0.1.0",
+  "bin": "bin/cloudfront-cdn-template.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build --clean",
+    "watch": "tsc -w",
+    "test": "vitest --run",
+    "cdk": "cdk",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.8",
+    "@eslint/js": "^9.25.1",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "@stylistic/eslint-plugin-plus": "^4.2.0",
+    "@stylistic/eslint-plugin-ts": "^4.2.0",
+    "@types/node": "^22.14.1",
+    "aws-cdk": "^2.1012.0",
+    "eslint": "^9.25.1",
+    "eslint-plugin-import": "^2.31.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0",
+    "vite": "^6.3.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.191.0",
+    "constructs": "^10.4.2",
+    "source-map-support": "^0.5.21"
+  },
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+}

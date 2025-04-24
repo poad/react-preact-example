@@ -1,0 +1,51 @@
+{
+  "name": "react-fs-routing-example",
+  "version": "1.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint './pages/**/*{.ts,.js,.tsx,.jsx}'",
+    "lint-fix": "eslint --fix './pages/**/*{.ts,.js,.tsx,.jsx}'",
+    "dev": "vite serve",
+    "build": "vite build --outDir dist",
+    "serve": "serve -s dist",
+    "ssr": "vite-pages ssr && serve dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.5.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.25.1",
+    "@mdx-js/react": "^3.1.0",
+    "@next/eslint-plugin-next": "^15.3.1",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "@stylistic/eslint-plugin-jsx": "^4.2.0",
+    "@stylistic/eslint-plugin-plus": "^4.2.0",
+    "@stylistic/eslint-plugin-ts": "^4.2.0",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.1",
+    "eslint-config-import": "^0.13.0",
+    "eslint-import-resolver-typescript": "^4.3.4",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "rimraf": "^6.0.1",
+    "serve": "^14.2.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.31.0",
+    "vite": "^6.3.3",
+    "vite-pages-theme-doc": "^5.0.0",
+    "vite-plugin-react-pages": "^5.0.0"
+  }
+}

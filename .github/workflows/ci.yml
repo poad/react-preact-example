@@ -1,0 +1,49 @@
+name: Build and Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+    - main
+
+  workflow_dispatch:
+
+jobs:
+  ci:
+    strategy:
+      matrix:
+        path:
+          - preact
+          - react
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        check-latest: true
+
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm ${{ matrix.path }}
+      with:
+        package_json_file: ${{ matrix.path }}/package.json
+        run_install: |
+          - recursive: true
+            cwd: ${{ matrix.path }}
+            args: [--no-frozen-lockfile]
+          - args: [--global, esbuild]
+
+    - uses: oven-sh/setup-bun@v2
+
+    - name: lint ${{ matrix.path }}
+      working-directory: ./${{ matrix.path }}
+      run: bun run --bun lint
+
+    - name: build ${{ matrix.path }}
+      working-directory: ./${{ matrix.path }}
+      run: bun run build

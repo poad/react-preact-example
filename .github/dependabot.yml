@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+
+  - package-ecosystem: npm
+    directories:
+      - '/'
+      - '/react/'
+      - '/preact/'
+      - '/preact/basic/'
+      - '/preact/fs-routing/'
+      - '/preact/react-router/'
+      - '/react/'
+      - '/react/fs-routing/'
+      - '/react/react-router/'
+      - '/react/react-router-cloudfront-spa/app/'
+      - '/react/react-router-cloudfront-spa/cdk/'
+      - '/react/react-router-cloudfront-spa/cdk/function/'
+      - '/react/tanstack-router/'
+    schedule:
+      interval: daily
+      timezone: Asia/Tokyo
+    allow:
+      - dependency-type: all
+    rebase-strategy: auto
+    assignees:
+      - poad
+    groups:
+      misc:
+        patterns:
+          - '*'
+

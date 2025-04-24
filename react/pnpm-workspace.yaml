@@ -1,0 +1,8 @@
+packages:
+  - ./fs-routing
+  - ./react-router
+  - ./react-router-cloudfront-spa/app
+  - ./react-router-cloudfront-spa/cdk
+  - ./react-router-cloudfront-spa/cdk/function
+  - ./tanstack-router
+

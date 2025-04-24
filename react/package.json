@@ -1,0 +1,17 @@
+{
+  "name": "react-examples",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "pnpm -r --parallel build",
+    "lint": "pnpm -r --parallel --if-present lint",
+    "lint-fix": "pnpm -r --parallel --if-present lint-fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.9.0",
+  "devDependencies": {
+    "pnpm": "^10.9.0"
+  }
+}
