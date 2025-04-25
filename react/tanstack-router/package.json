@@ -22,7 +22,7 @@
     "@stylistic/eslint-plugin-plus": "^4.2.0",
     "@stylistic/eslint-plugin-ts": "^4.2.0",
     "@tanstack/eslint-plugin-router": "^1.115.0",
-    "@tanstack/router-plugin": "^1.117.0",
+    "@tanstack/router-plugin": "^1.117.2",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
@@ -40,8 +40,8 @@
     "vite": "^6.3.3"
   },
   "dependencies": {
-    "@tanstack/react-router": "^1.117.0",
-    "@tanstack/router-devtools": "^1.117.0",
+    "@tanstack/react-router": "^1.117.1",
+    "@tanstack/router-devtools": "^1.117.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }
