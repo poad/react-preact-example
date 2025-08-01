@@ -12,13 +12,13 @@
 		"start": "pnpm dlx serve@latest dist/client"
 	},
 	"dependencies": {
-		"preact": "^10.26.9",
+		"preact": "^10.27.0",
 		"preact-render-to-string": "^6.5.13"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.1",
 		"@eslint/js": "^9.32.0",
-		"@next/eslint-plugin-next": "^15.4.4",
+		"@next/eslint-plugin-next": "^15.4.5",
 		"@preact/preset-vite": "^2.10.2",
 		"@stylistic/eslint-plugin": "^4.4.1",
 		"@stylistic/eslint-plugin-js": "^4.4.1",
@@ -34,7 +34,7 @@
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^5.2.0",
 		"rimraf": "^6.0.1",
-		"typescript": "^5.8.3",
+		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.38.0",
 		"vite": "^6.3.5",
 		"vite-plugin-ssr": "^0.4.142"

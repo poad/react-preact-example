@@ -1,15 +1,12 @@
 // @ts-check
 
 import stylistic from '@stylistic/eslint-plugin';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
-import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 
 import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-// @ts-expect-error ignore errors
 import importPlugin from 'eslint-plugin-import';
 import flowtypePlugin from 'eslint-plugin-flowtype';
 import pluginPromise from 'eslint-plugin-promise'
@@ -51,8 +48,8 @@ export default tseslint.config(
     },
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylisticTs,
-      '@stylistic/jsx': stylisticJsx,
+      '@stylistic/ts': stylistic,
+      '@stylistic/jsx': stylistic,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11yPlugin,
@@ -64,8 +61,7 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/jsx/jsx-indent': ['error', 2],
+      // '@stylistic/indent': ['error', 2],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/arrow-parens': ['error', 'always'],

@@ -2,11 +2,8 @@
 
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
-import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-// @ts-expect-error ignore errors
 import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -31,13 +28,12 @@ export default tseslint.config(
   {
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylisticTs,
-      '@stylistic/jsx': stylisticJsx,
+      '@stylistic/ts': stylistic,
+      '@stylistic/jsx': stylistic,
     },
     rules: {
       '@stylistic/semi': 'error',
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/jsx/jsx-indent': ['error', 2],
+      // '@stylistic/indent': ['error', 2],
     },
   },
   {
@@ -46,7 +42,6 @@ export default tseslint.config(
       ['jsx-a11y']: jsxA11yPlugin,
     },
     extends: [
-      // @ts-expect-error ignore errors
       ...compat.config(reactHooksPlugin.configs.recommended),
       ...compat.config(jsxA11yPlugin.configs.recommended),
     ],

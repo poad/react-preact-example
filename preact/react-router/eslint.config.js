@@ -2,12 +2,8 @@
 
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import stylisticTs from '@stylistic/eslint-plugin-ts';
-import stylisticJsx from '@stylistic/eslint-plugin-jsx';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 
 import tseslint from 'typescript-eslint';
@@ -33,8 +29,8 @@ export default tseslint.config(
   {
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylisticTs,
-      '@stylistic/jsx': stylisticJsx,
+      '@stylistic/ts': stylistic,
+      '@stylistic/jsx': stylistic,
       'jsx-a11y': jsxA11yPlugin,
       import: importPlugin,
     },
@@ -68,17 +64,14 @@ export default tseslint.config(
       },
     },
     rules: {
-      '@stylistic/semi': 'error',
-      '@stylistic/ts/indent': ['error', 2],
-      '@stylistic/jsx/jsx-indent': ['error', 2],
+      // '@stylistic/ts/indent': ['error', 2],
       'react/display-name': 'off',
       'import/namespace': 'off',
       'import/no-named-as-default': 'off',
       'import/no-named-as-default-member': 'off',
-      'comma-dangle': ['error', 'always-multiline'],
-      'semi': ['error', 'always'],
-      'quotes': ['error', 'single'],
-      'indent': ['error', 2],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
     },
   },
 );
