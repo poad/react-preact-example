@@ -44,7 +44,7 @@
     "serve": "^14.2.5",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.42.0",
-    "vite": "^6.3.5",
+    "vite": "^6.3.6",
     "vite-pages-theme-doc": "^5.0.0",
     "vite-plugin-react-pages": "^5.0.0"
   }
