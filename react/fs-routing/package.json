@@ -17,7 +17,7 @@
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.0"
+    "react-router-dom": "^7.9.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -29,8 +29,8 @@
     "@stylistic/eslint-plugin-jsx": "^4.4.1",
     "@stylistic/eslint-plugin-plus": "^4.4.1",
     "@stylistic/eslint-plugin-ts": "^4.4.1",
-    "@types/node": "^22.18.1",
-    "@types/react": "^19.1.12",
+    "@types/node": "^22.18.3",
+    "@types/react": "^19.1.13",
     "@vitejs/plugin-react": "^4.7.0",
     "eslint": "^9.35.0",
     "eslint-config-import": "^0.13.0",
