@@ -44,7 +44,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.5",
-    "typescript-eslint": "^8.44.0",
+    "typescript-eslint": "^8.44.1",
     "vite": "^6.3.6",
     "vite-pages-theme-doc": "^5.0.0",
     "vite-plugin-react-pages": "^5.0.0"
