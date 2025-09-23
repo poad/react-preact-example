@@ -23,7 +23,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.36.0",
     "@mdx-js/react": "^3.1.1",
-    "@next/eslint-plugin-next": "^15.5.3",
+    "@next/eslint-plugin-next": "^15.5.4",
     "@stylistic/eslint-plugin": "^4.4.1",
     "@stylistic/eslint-plugin-js": "^4.4.1",
     "@stylistic/eslint-plugin-jsx": "^4.4.1",
