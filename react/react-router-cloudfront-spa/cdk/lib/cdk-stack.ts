@@ -4,7 +4,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as iam from 'aws-cdk-lib/aws-iam';
-import * as deployment from "aws-cdk-lib/aws-s3-deployment";
+import * as deployment from 'aws-cdk-lib/aws-s3-deployment';
 import { compileBundles } from './process/setup';
 
 export interface Config extends cdk.StackProps {
@@ -37,7 +37,7 @@ function websiteIndexPageForwardFunctionResolver(stack: cdk.Stack, functionConfi
         functionName,
         functionArn: functionConfig.arn,
       },
-    )
+    );
   }
   return new cloudfront.Function(stack, 'WebsiteIndexPageForwardFunction', {
     functionName,
@@ -75,12 +75,12 @@ export class CdkStack extends cdk.Stack {
     s3bucket.addToResourcePolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
-        actions: ["s3:*"],
+        actions: ['s3:*'],
         principals: [new iam.AccountPrincipal(this.account)],
         resources: [`${s3bucket.bucketArn}/*`],
         conditions: {
           StringEquals: {
-            "s3:ResourceAccount": this.account,
+            's3:ResourceAccount': this.account,
           },
         },
       }),
@@ -121,15 +121,15 @@ export class CdkStack extends cdk.Stack {
       httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
     });
 
-    const deployRole = new iam.Role(this, "DeployWebsiteRole", {
+    const deployRole = new iam.Role(this, 'DeployWebsiteRole', {
       roleName: `${bucketName}-deploy-role`,
-      assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
       inlinePolicies: {
-        "s3-policy": new iam.PolicyDocument({
+        's3-policy': new iam.PolicyDocument({
           statements: [
             new iam.PolicyStatement({
               effect: iam.Effect.ALLOW,
-              actions: ["s3:*"],
+              actions: ['s3:*'],
               resources: [`${s3bucket.bucketArn}/`, `${s3bucket.bucketArn}/*`],
             }),
           ],
@@ -137,11 +137,11 @@ export class CdkStack extends cdk.Stack {
       },
     });
 
-    new deployment.BucketDeployment(this, "DeployWebsite", {
+    new deployment.BucketDeployment(this, 'DeployWebsite', {
       sources: [deployment.Source.asset(`${process.cwd()}/../app/build/client`)],
       destinationBucket: s3bucket,
-      destinationKeyPrefix: "/",
-      exclude: [".DS_Store", "*/.DS_Store"],
+      destinationKeyPrefix: '/',
+      exclude: ['.DS_Store', '*/.DS_Store'],
       prune: true,
       retainOnDelete: false,
       role: deployRole,

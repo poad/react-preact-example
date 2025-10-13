@@ -8,7 +8,7 @@ import {
 const app = new cdk.App();
 
 const env = app.node.tryGetContext('env');
-const config = app.node.tryGetContext(env ?? 'default')
+const config = app.node.tryGetContext(env ?? 'default');
 
 const stack = new CdkStack(app, config.stackName, {
   ...config,

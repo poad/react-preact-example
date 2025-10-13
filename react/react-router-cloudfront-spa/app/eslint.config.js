@@ -1,56 +1,64 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
-import reactPlugin from 'eslint-plugin-react';
-
-import tseslint from 'typescript-eslint';
+import pluginPromise from 'eslint-plugin-promise';
+// import reactRefresh from "eslint-plugin-react-refresh";
+import globals from 'globals';
+import { configs, parser } from 'typescript-eslint';
 import { FlatCompat } from '@eslint/eslintrc';
+
+import { includeIgnoreFile } from '@eslint/compat';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gitignorePath = path.resolve(__dirname, './.gitignore');
 
 const compat = new FlatCompat();
 
-export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
-  reactPlugin.configs.flat.recommended,
-  reactPlugin.configs.flat['jsx-runtime'],
+export default defineConfig(
+  includeIgnoreFile(gitignorePath),
   {
     ignores: [
       '**/*.d.ts',
-      '*.{js,jsx}',
-      'app/tsconfig.json',
-      'app/stories',
-      '**/*.css',
+      '*.js',
+      'src/tsconfig.json',
+      'src/next-env.d.ts',
+      'src/stories',
       'node_modules/**/*',
       './.next/*',
-      'out',
-      '.storybook',
     ],
-    files: ['app/**/*.{ts,tsx}'],
-    ...importPlugin.flatConfigs.recommended,
-    ...importPlugin.flatConfigs.typescript,
+  },
+  eslint.configs.recommended,
+  ...configs.strict,
+  ...configs.stylistic,
+  // @ts-ignore
+  pluginPromise.configs['flat/recommended'],
+  reactHooks.configs.flat.recommended,
+  // reactRefresh.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    ...react.configs.flat.recommended,
+    ...react.configs.flat['jsx-runtime'],
     languageOptions: {
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
+      ...react.configs.flat.recommended.languageOptions,
+      parser,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
       },
     },
-    plugins: {
-      '@stylistic': stylistic,
-      '@stylistic/ts': stylistic,
-      '@stylistic/jsx': stylistic,
-      'jsx-a11y': jsxA11yPlugin,
-    },
     extends: [
-      ...compat.config(reactHooksPlugin.configs.recommended),
-      ...compat.config(jsxA11yPlugin.configs.recommended),
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
     ],
     settings: {
       react: {
@@ -61,21 +69,25 @@ export default tseslint.config(
         { name: 'Link', linkAttribute: 'to' },
         { name: 'NavLink', linkAttribute: 'to' },
       ],
+      'import/internal-regex': '^~/',
       'import/resolver': {
-        node: true,
-        typescript: true,
+        node: {
+          extensions: ['.ts', '.tsx'],
+        },
+        typescript: {
+          alwaysTryTypes: true,
+        },
       },
+    },
+    plugins: {
+      '@stylistic': stylistic,
     },
     rules: {
       '@stylistic/semi': 'error',
-      // '@stylistic/indent': ['error', 2],
-      'react/display-name': 'off',
-      'import/namespace': 'off',
-      'import/no-named-as-default': 'off',
-      'import/no-named-as-default-member': 'off',
-      'comma-dangle': ["error", "always-multiline"],
-      quotes: ["error", "single"],
-      semi: ["error", "always"],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
     },
   },
 );

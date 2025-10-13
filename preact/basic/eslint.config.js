@@ -1,21 +1,31 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import importPlugin from 'eslint-plugin-import';
+import pluginPromise from 'eslint-plugin-promise';
+// import reactRefresh from "eslint-plugin-react-refresh";
+import globals from 'globals';
+import { configs, parser } from 'typescript-eslint';
+import { FlatCompat } from '@eslint/eslintrc';
 
-import reactPlugin from 'eslint-plugin-react';
-import hooksPlugin from 'eslint-plugin-react-hooks';
-import tseslint from 'typescript-eslint';
+import { includeIgnoreFile } from '@eslint/compat';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const gitignorePath = path.resolve(__dirname, './.gitignore');
+
+const compat = new FlatCompat();
+
+export default defineConfig(
+  includeIgnoreFile(gitignorePath),
   {
-    languageOptions: {
-      parser: tseslint.parser,
-    },
-    files: ['**/*.ts', '**/*.tsx'],
     ignores: [
       '**/*.d.ts',
       '*.js',
@@ -23,25 +33,60 @@ export default tseslint.config(
       'src/next-env.d.ts',
       'src/stories',
       'node_modules/**/*',
+      './.next/*',
     ],
+  },
+  eslint.configs.recommended,
+  ...configs.strict,
+  ...configs.stylistic,
+  // @ts-ignore
+  pluginPromise.configs['flat/recommended'],
+  reactHooks.configs.flat.recommended,
+  jsxA11y.flatConfigs.recommended,
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    ...react.configs.flat.recommended,
+    ...react.configs.flat['jsx-runtime'],
+    languageOptions: {
+      ...react.configs.flat.recommended.languageOptions,
+      parser,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    },
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      formComponents: ['Form'],
+      linkComponents: [
+        { name: 'Link', linkAttribute: 'to' },
+        { name: 'NavLink', linkAttribute: 'to' },
+      ],
+      'import/internal-regex': '^~/',
+      'import/resolver': {
+        node: {
+          extensions: ['.ts', '.tsx'],
+        },
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+    },
     plugins: {
-      react: reactPlugin,
-      'react-hooks': hooksPlugin,
       '@stylistic': stylistic,
-      '@stylistic/ts': stylistic,
-      '@stylistic/jsx': stylistic,
     },
     rules: {
-      ...reactPlugin.configs['jsx-runtime'].rules,
-      ...hooksPlugin.configs.recommended.rules,
       '@stylistic/semi': 'error',
-      // '@stylistic/indent': ['error', 2],
-      'comma-dangle': ['error', 'always-multiline'],
-      'arrow-parens': ['error', 'always'],
-      quotes: ['error', 'single'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
     },
-  },
-  {
-    ignores: ['./.next/*'],
   },
 );

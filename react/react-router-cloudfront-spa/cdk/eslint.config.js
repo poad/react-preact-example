@@ -1,8 +1,13 @@
 // @ts-check
 
+import { defineConfig } from 'eslint/config';
 import eslint from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import tseslint from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
+import pluginPromise from 'eslint-plugin-promise';
+import globals from 'globals';
+import { configs, parser } from 'typescript-eslint';
+import { FlatCompat } from '@eslint/eslintrc';
 
 import { includeIgnoreFile } from '@eslint/compat';
 import path from 'node:path';
@@ -10,32 +15,69 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const gitignorePath = path.resolve(__dirname, '.gitignore');
+const gitignorePath = path.resolve(__dirname, './.gitignore');
 
-export default tseslint.config(
+const compat = new FlatCompat();
+
+export default defineConfig(
   includeIgnoreFile(gitignorePath),
-  eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
   {
     ignores: [
       '**/*.d.ts',
-      'out',
-      'cdk.out',
-      'dist',
+      '*.js',
+      'src/tsconfig.json',
+      'src/next-env.d.ts',
+      'src/stories',
+      'node_modules/**/*',
+      './.next/*',
     ],
-    files: ['src/*.ts', 'src/**/*.ts'],
+  },
+  eslint.configs.recommended,
+  ...configs.strict,
+  ...configs.stylistic,
+  // @ts-ignore
+  pluginPromise.configs['flat/recommended'],
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+      },
+    },
+    extends: [
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+    ],
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      formComponents: ['Form'],
+      linkComponents: [
+        { name: 'Link', linkAttribute: 'to' },
+        { name: 'NavLink', linkAttribute: 'to' },
+      ],
+      'import/internal-regex': '^~/',
+      'import/resolver': {
+        node: {
+          extensions: ['.ts', '.tsx'],
+        },
+        typescript: {
+          alwaysTryTypes: true,
+        },
+      },
+    },
     plugins: {
       '@stylistic': stylistic,
-      '@stylistic/ts': stylistic,
     },
     rules: {
       '@stylistic/semi': 'error',
-      // '@stylistic/indent': ['error', 2],
-      'comma-dangle': ['error', 'always-multiline'],
-      'arrow-parens': ['error', 'always'],
-      quates: ['error', 'single'],
-      semi: ["error", "always"],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
     },
   },
 );
