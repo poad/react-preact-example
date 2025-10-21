@@ -44,7 +44,7 @@
     "rimraf": "^6.0.1",
     "serve": "^14.2.5",
     "typescript-eslint": "^8.46.1",
-    "vite": "^7.1.10",
+    "vite": "^7.1.11",
     "vite-pages-theme-doc": "^5.0.0",
     "vite-plugin-react-pages": "^5.0.0"
   }
