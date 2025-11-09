@@ -25,8 +25,8 @@
     "@react-router/dev": "^7.9.5",
     "@react-router/fs-routes": "^7.9.5",
     "@stylistic/eslint-plugin": "^5.5.0",
-    "@tailwindcss/postcss": "^4.1.16",
-    "@tailwindcss/vite": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.17",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "autoprefixer": "^10.4.21",
@@ -43,10 +43,10 @@
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
     "serve": "^14.2.5",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3",
-    "vite": "^7.1.12",
+    "vite": "^7.2.2",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {
