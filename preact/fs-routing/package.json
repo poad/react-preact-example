@@ -19,14 +19,14 @@
     "preact-render-to-string": "^6.6.3",
     "react": "npm:@preact/compat@^18.3.1",
     "react-dom": "npm:@preact/compat@^18.3.1",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.10.0"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
     "@mdx-js/react": "^3.1.1",
-    "@next/eslint-plugin-next": "^15.5.6",
+    "@next/eslint-plugin-next": "^15.5.7",
     "@preact/preset-vite": "^2.10.2",
     "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "^24.10.1",
