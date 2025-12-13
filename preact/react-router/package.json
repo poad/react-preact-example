@@ -15,7 +15,7 @@
     "@react-router/node": "^7.10.1",
     "isbot": "^5.1.32",
     "preact": "^10.28.0",
-    "preact-render-to-string": "^6.6.3",
+    "preact-render-to-string": "^6.6.4",
     "react": "npm:@preact/compat@^18.3.1",
     "react-dom": "npm:@preact/compat@^18.3.1",
     "react-router": "^7.10.1"
@@ -23,7 +23,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
     "@eslint/eslintrc": "^3.3.3",
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.2",
     "@preact/preset-vite": "^2.10.2",
     "@react-router/dev": "^7.10.1",
     "@react-router/fs-routes": "^7.10.1",
@@ -31,7 +31,7 @@
     "@stylistic/eslint-plugin": "^5.6.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
