@@ -27,7 +27,7 @@
     "@next/eslint-plugin-next": "^15.5.9",
     "@stylistic/eslint-plugin": "^5.7.0",
     "@types/node": "^24.10.9",
-    "@types/react": "^19.2.8",
+    "@types/react": "^19.2.9",
     "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
