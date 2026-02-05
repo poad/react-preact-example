@@ -29,7 +29,7 @@
     "@react-router/fs-routes": "^7.13.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@stylistic/eslint-plugin": "^5.7.1",
-    "@types/react": "^19.2.10",
+    "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
