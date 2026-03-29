@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"preact": "^10.29.0",
-		"preact-render-to-string": "^6.6.6"
+		"preact-render-to-string": "^6.6.7"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.3",
