@@ -1,8 +1,4 @@
 {
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
-  },
   "include": [
     "env.d.ts",
     "**/*.ts",
@@ -30,5 +26,9 @@
 
     // Remix takes care of building everything in `remix build`.
     "noEmit": true
-  }
+  },
+  "exclude": [
+    "eslint.config.ts",
+    "vite.config.ts"
+  ]
 }

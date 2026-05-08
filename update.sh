@@ -15,6 +15,11 @@ fi
 echo ""
 pwd
 
+if ! (disable-checkout-persist-credentials); then
+  cd "${CUR}" || exit
+  exit 1
+fi
+
 cd "${CURRENT}/preact" || exit
 result=$?
 if [ $result -ne 0 ]; then
@@ -24,7 +29,7 @@ fi
 echo ""
 pwd
 
-if ! (npx -y pnpm@latest self-update latest-11 && pnpm install -r && pnpm up -r && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
+if ! (pnx pnpm@latest self-update && pnpm install -r && pnpm up -r && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
   cd "${CUR}" || exit $result
   exit 1
 fi
@@ -38,7 +43,7 @@ fi
 echo ""
 pwd
 
-if ! (npx -y pnpm@latest self-update latest-11 && pnpm install -r && pnpm up -r && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
+if ! (pnx pnpm@latest self-update && pnpm install -r && pnpm up -r && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
   cd "${CUR}" || exit $result
   exit $result
 fi

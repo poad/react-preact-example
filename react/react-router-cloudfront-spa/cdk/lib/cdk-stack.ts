@@ -1,3 +1,4 @@
+import { compileBundles } from './process/setup.js';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
@@ -5,7 +6,6 @@ import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as deployment from 'aws-cdk-lib/aws-s3-deployment';
-import { compileBundles } from './process/setup';
 
 export interface Config extends cdk.StackProps {
   bucketName: string;
@@ -22,7 +22,7 @@ export interface Config extends cdk.StackProps {
 }
 
 interface CdkStackProps extends Config {
-  environment?: string;
+  readonly environment?: string;
 }
 
 function websiteIndexPageForwardFunctionResolver(stack: cdk.Stack, functionConfig: {

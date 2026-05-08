@@ -6,6 +6,8 @@ updates:
       interval: daily
     allow:
       - dependency-type: all
+    cooldown:
+      default-days: 3
     rebase-strategy: auto
     assignees:
       - poad
@@ -16,19 +18,20 @@ updates:
       - '/react/'
       - '/preact/'
       - '/preact/basic/'
-      - '/preact/fs-routing/'
       - '/preact/react-router/'
       - '/react/'
-      - '/react/fs-routing/'
       - '/react/react-router/'
       - '/react/react-router-cloudfront-spa/app/'
       - '/react/react-router-cloudfront-spa/cdk/'
       - '/react/react-router-cloudfront-spa/cdk/function/'
+      - '/react/signals/'
     schedule:
       interval: daily
       timezone: Asia/Tokyo
     allow:
       - dependency-type: all
+    cooldown:
+      default-days: 7
     rebase-strategy: auto
     assignees:
       - poad

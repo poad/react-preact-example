@@ -12,29 +12,27 @@
     "lint-fix": "eslint --fix"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.0.5",
+    "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.5",
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^22.19.17",
-    "aws-cdk": "^2.1120.0",
-    "eslint": "^9.39.4",
-    "eslint-import-resolver-typescript": "^4.4.4",
-    "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.32.0",
+    "@types/node": "^24.13.1",
+    "aws-cdk": "^2.1126.0",
+    "eslint": "^10.4.1",
+    "eslint-import-resolver-typescript": "^4.4.5",
+    "eslint-plugin-awscdk": "^4.3.3",
+    "eslint-plugin-import-x": "^4.16.2",
     "eslint-plugin-promise": "^7.3.0",
-    "globals": "^17.5.0",
-    "tsx": "^4.21.0",
+    "globals": "^17.6.0",
+    "jiti": "^2.7.0",
+    "tsx": "^4.22.4",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.59.1",
-    "vite": "^7.3.2",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "typescript-eslint": "^8.60.1",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.252.0",
-    "constructs": "^10.6.0",
-    "source-map-support": "^0.5.21"
-  },
-  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+    "aws-cdk-lib": "^2.258.0",
+    "constructs": "^10.6.0"
+  }
 }

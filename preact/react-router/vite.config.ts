@@ -1,6 +1,6 @@
 import alias from '@rollup/plugin-alias';
 import { reactRouter } from '@react-router/dev/vite';
-import preact from '@preact/preset-vite';
+import { preact } from '@preact/preset-vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
