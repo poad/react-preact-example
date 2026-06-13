@@ -3,7 +3,7 @@ export { render };
 export const passToClient = ['pageProps', 'urlPathname'];
 
 import { renderToString } from 'preact-render-to-string';
-import { PageShell } from './PageShell';
+import { PageShell } from './PageShell.jsx';
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server';
 
 async function render(pageContext) {

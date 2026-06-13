@@ -1,4 +1,4 @@
-import { Clock } from '../../components/clock';
+import { Clock } from '../../components/clock/index.jsx';
 import './style.css';
 
 export function Page() {

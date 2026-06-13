@@ -1,4 +1,4 @@
-import { PageContextProvider } from './usePageContext';
+import { PageContextProvider } from './usePageContext.js';
 import './PageShell.css';
 import { ReactNode } from 'preact/compat';
 
