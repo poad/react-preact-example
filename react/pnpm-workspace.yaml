@@ -42,6 +42,7 @@ minimumReleaseAgeExclude:
   - '@esbuild/win32-arm64@0.28.1'
   - '@esbuild/win32-ia32@0.28.1'
   - '@esbuild/win32-x64@0.28.1'
+  - brace-expansion@1.1.16
 
 overrides:
   chokidar: '>=5'
@@ -53,5 +54,6 @@ overrides:
   '@preact/signals-react-transform': ^0.8.1
   esbuild@>=0.17.0 <0.28.1: ^0.28.1
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
+  brace-expansion@<1.1.16: ^1.1.16
 
 trustPolicy: no-downgrade
