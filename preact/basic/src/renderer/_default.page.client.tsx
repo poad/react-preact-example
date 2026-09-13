@@ -3,18 +3,15 @@ export { render };
 export const clientRouting = true;
 export const hydrationCanBeAborted = true;
 
-import { hydrate } from 'preact';
-import { PageShell } from './PageShell.jsx';
+import { PageShell } from "./PageShell.jsx";
+import { hydrate } from "preact";
 
 // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
 async function render(pageContext) {
   const { Page, pageProps } = pageContext;
-  if (!Page)
-    throw new Error(
-      'Client-side render() hook expects pageContext.Page to be defined',
-    );
-  const root = document.getElementById('app');
-  if (!root) throw new Error('DOM element #app not found');
+  if (!Page) throw new Error("Client-side render() hook expects pageContext.Page to be defined");
+  const root = document.getElementById("app");
+  if (!root) throw new Error("DOM element #app not found");
 
   hydrate(
     <PageShell pageContext={pageContext}>

@@ -1,8 +1,7 @@
-import { defineConfig } from 'vite'
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
-import pages from 'vite-plugin-pages';
-
+import babel from "@rolldown/plugin-babel";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import pages from "vite-plugin-pages";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,10 +9,10 @@ export default defineConfig({
     react(),
     babel({
       presets: [reactCompilerPreset()],
-      plugins: [["module:@preact/signals-react-transform"]]
+      plugins: [["module:@preact/signals-react-transform"]],
     }),
     pages({
-      dirs: 'src',
+      dirs: "src",
     }),
   ],
-})
+});

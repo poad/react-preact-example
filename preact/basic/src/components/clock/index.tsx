@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState, useEffect } from "preact/hooks";
 
 export function Clock() {
   const [time, setTime] = useState<string>();

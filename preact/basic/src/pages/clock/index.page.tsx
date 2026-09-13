@@ -1,5 +1,5 @@
-import { Clock } from '../../components/clock/index.jsx';
-import './style.css';
+import { Clock } from "../../components/clock/index.jsx";
+import "./style.css";
 
 export function Page() {
   return (

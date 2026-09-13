@@ -1,5 +1,5 @@
-import preactLogo from '../assets/preact.svg';
-import './style.css';
+import preactLogo from "../assets/preact.svg";
+import "./style.css";
 
 export function Page() {
   return (
@@ -31,12 +31,7 @@ export function Page() {
 
 function Resource(props: { href: string; title: string; description: string }) {
   return (
-    <a
-      href={props.href}
-      target="_blank"
-      className="resource"
-      rel="noopener noreferrer"
-    >
+    <a href={props.href} target="_blank" className="resource" rel="noopener noreferrer">
       <h2>{props.title}</h2>
       <p>{props.description}</p>
     </a>

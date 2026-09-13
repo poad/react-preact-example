@@ -1,16 +1,13 @@
-import * as childProcess from 'child_process';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as childProcess from "child_process";
+import * as fs from "fs";
+import * as path from "path";
 
 export const compileBundles = () => {
-  ['function', '../app'].forEach((f) => {
+  ["function", "../app"].forEach((f) => {
     fs.readdirSync(`${process.cwd()}/${f}`, {
       withFileTypes: true,
     })
-      .filter(
-        (p) =>
-          p.isFile() && (p.name.endsWith('.js') || p.name.endsWith('.d.ts')),
-      )
+      .filter((p) => p.isFile() && (p.name.endsWith(".js") || p.name.endsWith(".d.ts")))
       .map((p) => `${process.cwd()}/${f}/${p.name}`)
       .forEach((file) => {
         if (fs.existsSync(file)) {
@@ -19,22 +16,22 @@ export const compileBundles = () => {
           });
         }
       });
-    ['pnpm install'].forEach((cmd) => {
+    ["pnpm install"].forEach((cmd) => {
       childProcess.execSync(cmd, {
         cwd: `${process.cwd()}/${f}/`,
-        stdio: ['ignore', 'inherit', 'inherit'],
+        stdio: ["ignore", "inherit", "inherit"],
         env: { ...process.env },
-        shell: process.env.SHELL || 'bash',
+        shell: process.env.SHELL || "bash",
       });
     });
   });
 
-  ['function', '../app'].forEach((f) => {
-    childProcess.execSync('pnpm build', {
+  ["function", "../app"].forEach((f) => {
+    childProcess.execSync("pnpm build", {
       cwd: path.resolve(`${process.cwd()}/${f}/`),
-      stdio: ['ignore', 'inherit', 'inherit'],
+      stdio: ["ignore", "inherit", "inherit"],
       env: { ...process.env },
-      shell: process.env.SHELL || 'bash',
+      shell: process.env.SHELL || "bash",
     });
   });
 };

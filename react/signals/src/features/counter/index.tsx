@@ -10,5 +10,9 @@ const CounterModel = createModel(() => ({
 export function Counter() {
   const model = useModel(CounterModel);
 
-  return <button onClick={() => model.increment()} className="counter">Count is {model.count.value}</button>;
+  return (
+    <button onClick={() => model.increment()} className="counter">
+      Count is {model.count.value}
+    </button>
+  );
 }

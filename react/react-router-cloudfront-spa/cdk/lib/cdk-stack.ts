@@ -1,11 +1,11 @@
-import { compileBundles } from './process/setup.js';
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as s3 from 'aws-cdk-lib/aws-s3';
-import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
-import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as deployment from 'aws-cdk-lib/aws-s3-deployment';
+import { compileBundles } from "./process/setup.js";
+import * as cdk from "aws-cdk-lib";
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import * as iam from "aws-cdk-lib/aws-iam";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import * as deployment from "aws-cdk-lib/aws-s3-deployment";
+import { Construct } from "constructs";
 
 export interface Config extends cdk.StackProps {
   bucketName: string;
@@ -25,35 +25,31 @@ interface CdkStackProps extends Config {
   readonly environment?: string;
 }
 
-function websiteIndexPageForwardFunctionResolver(stack: cdk.Stack, functionConfig: {
-  name: string;
-  arn?: string;
-}, functionName: string) {
+function websiteIndexPageForwardFunctionResolver(
+  stack: cdk.Stack,
+  functionConfig: {
+    name: string;
+    arn?: string;
+  },
+  functionName: string,
+) {
   if (functionConfig.arn) {
-    return cloudfront.Function.fromFunctionAttributes(
-      stack,
-      'WebsiteIndexPageForwardFunction',
-      {
-        functionName,
-        functionArn: functionConfig.arn,
-      },
-    );
+    return cloudfront.Function.fromFunctionAttributes(stack, "WebsiteIndexPageForwardFunction", {
+      functionName,
+      functionArn: functionConfig.arn,
+    });
   }
-  return new cloudfront.Function(stack, 'WebsiteIndexPageForwardFunction', {
+  return new cloudfront.Function(stack, "WebsiteIndexPageForwardFunction", {
     functionName,
     code: cloudfront.FunctionCode.fromFile({
-      filePath: 'function/index.js',
+      filePath: "function/index.js",
     }),
     runtime: cloudfront.FunctionRuntime.JS_2_0,
   });
 }
 
 export class CdkStack extends cdk.Stack {
-  constructor(
-    scope: Construct,
-    id: string,
-    props: CdkStackProps,
-  ) {
+  constructor(scope: Construct, id: string, props: CdkStackProps) {
     super(scope, id, props);
 
     const {
@@ -62,7 +58,7 @@ export class CdkStack extends cdk.Stack {
       cloudfront: { comment, originAccessControl },
     } = props;
 
-    const s3bucket = new s3.Bucket(this, 'S3Bucket', {
+    const s3bucket = new s3.Bucket(this, "S3Bucket", {
       bucketName,
       versioned: false,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
@@ -75,12 +71,12 @@ export class CdkStack extends cdk.Stack {
     s3bucket.addToResourcePolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
-        actions: ['s3:*'],
+        actions: ["s3:*"],
         principals: [new iam.AccountPrincipal(this.account)],
         resources: [`${s3bucket.bucketArn}/*`],
         conditions: {
           StringEquals: {
-            's3:ResourceAccount': this.account,
+            "s3:ResourceAccount": this.account,
           },
         },
       }),
@@ -90,8 +86,14 @@ export class CdkStack extends cdk.Stack {
     const { functionConfig } = originAccessControl;
     compileBundles();
 
-    const functionName = environment ? `${environment}-${functionConfig.name}` : functionConfig.name;
-    const websiteIndexPageForwardFunction = websiteIndexPageForwardFunctionResolver(this, functionConfig, functionName);
+    const functionName = environment
+      ? `${environment}-${functionConfig.name}`
+      : functionConfig.name;
+    const websiteIndexPageForwardFunction = websiteIndexPageForwardFunctionResolver(
+      this,
+      functionConfig,
+      functionName,
+    );
     const functionAssociations = [
       {
         eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
@@ -99,12 +101,12 @@ export class CdkStack extends cdk.Stack {
       },
     ];
 
-    const oac = new cloudfront.S3OriginAccessControl(this, 'OriginAccessControl', {
+    const oac = new cloudfront.S3OriginAccessControl(this, "OriginAccessControl", {
       originAccessControlName: originAccessControl?.functionConfig.name,
       signing: cloudfront.Signing.SIGV4_NO_OVERRIDE,
     });
 
-    const cf = new cloudfront.Distribution(this, 'CloudFront', {
+    const cf = new cloudfront.Distribution(this, "CloudFront", {
       comment,
       defaultBehavior: {
         origin: origins.S3BucketOrigin.withOriginAccessControl(s3bucket, {
@@ -115,21 +117,20 @@ export class CdkStack extends cdk.Stack {
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
         cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
-        viewerProtocolPolicy:
-          cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
       httpVersion: cloudfront.HttpVersion.HTTP2_AND_3,
     });
 
-    const deployRole = new iam.Role(this, 'DeployWebsiteRole', {
+    const deployRole = new iam.Role(this, "DeployWebsiteRole", {
       roleName: `${bucketName}-deploy-role`,
-      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
+      assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
       inlinePolicies: {
-        's3-policy': new iam.PolicyDocument({
+        "s3-policy": new iam.PolicyDocument({
           statements: [
             new iam.PolicyStatement({
               effect: iam.Effect.ALLOW,
-              actions: ['s3:*'],
+              actions: ["s3:*"],
               resources: [`${s3bucket.bucketArn}/`, `${s3bucket.bucketArn}/*`],
             }),
           ],
@@ -137,17 +138,17 @@ export class CdkStack extends cdk.Stack {
       },
     });
 
-    new deployment.BucketDeployment(this, 'DeployWebsite', {
+    new deployment.BucketDeployment(this, "DeployWebsite", {
       sources: [deployment.Source.asset(`${process.cwd()}/../app/build/client`)],
       destinationBucket: s3bucket,
-      destinationKeyPrefix: '/',
-      exclude: ['.DS_Store', '*/.DS_Store'],
+      destinationKeyPrefix: "/",
+      exclude: [".DS_Store", "*/.DS_Store"],
       prune: true,
       retainOnDelete: false,
       role: deployRole,
     });
 
-    new cdk.CfnOutput(this, 'AccessURLOutput', {
+    new cdk.CfnOutput(this, "AccessURLOutput", {
       value: `https://${cf.distributionDomainName}`,
     });
   }

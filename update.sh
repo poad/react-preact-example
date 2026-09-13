@@ -29,7 +29,7 @@ fi
 echo ""
 pwd
 
-if ! (pnx pnpm@latest self-update && pnpm install -r && pnpm up -r && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
+if ! (pnx pnpm@latest self-update && pnpm install -r && pnpm up -r --include-github-actions && pnpm audit --fix override && pnpm up -r && pnpm lint-fix && pnpm clean && pnpm build); then
   cd "${CUR}" || exit $result
   exit 1
 fi

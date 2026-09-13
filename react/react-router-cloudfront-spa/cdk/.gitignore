@@ -7,8 +7,6 @@ node_modules
 .cdk.staging
 cdk.out
 
-!eslint.config.js
-
 # React Router
 /.react-router/
 /build/
