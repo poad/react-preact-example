@@ -8,8 +8,8 @@
     "lint-fix": "oxfmt && oxlint --fix"
   },
   "devDependencies": {
-    "oxfmt": "^0.67.0",
-    "oxlint": "^1.86.0",
-    "typescript": "^5.9.3"
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
+    "typescript": "^7.0.2"
   }
 }

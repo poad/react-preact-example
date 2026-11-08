@@ -1,3 +1,4 @@
+import { signalsVite } from "@preact/signals-agent-vite";
 import babel from "@rolldown/plugin-babel";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
@@ -9,10 +10,10 @@ export default defineConfig({
     react(),
     babel({
       presets: [reactCompilerPreset()],
-      plugins: [["module:@preact/signals-react-transform"]],
     }),
     pages({
       dirs: "src",
     }),
+    signalsVite({ framework: "react" }),
   ],
 });

@@ -14,7 +14,12 @@ blockExoticSubdeps: true
 minimumReleaseAge: 10080 # 7 days in minutes
 
 minimumReleaseAgeExclude:
-  - pnpm@12.12.1
+  - pnpm@12.18.0
+
+audit:
+  level: moderate
+  ignore:
+    - GHSA-g3hv-75wg-m249
 
 overrides:
   chokidar: '>=5'
